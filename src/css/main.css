@@ -1,0 +1,178 @@
+/* 기획서 1.2 타이포그래피 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+    color: var(--neutral-gray-900);
+    background: var(--neutral-gray-100);
+}
+
+/* 타이포그래피 스타일 */
+h1 {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+.caption {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+}
+
+/* 컨테이너 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+}
+
+/* 모바일 프레임 */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 var(--spacing-lg);
+    }
+}
+
+/* 로그인 화면 */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-5xl);
+    width: 90%;
+    max-width: 400px;
+    box-shadow: var(--shadow-lg);
+}
+
+/* 헤더 */
+.header {
+    background: white;
+    padding: var(--spacing-lg) 0;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+    padding: var(--spacing-2xl) 0;
+    min-height: calc(100vh - 140px);
+    padding-bottom: 100px;
+}
+
+/* 하단 고정 바 */
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: var(--spacing-lg);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+    z-index: 99;
+}
+
+.bottom-bar-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 사이드바 */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 240px;
+    height: 100vh;
+    background: white;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease;
+    z-index: 200;
+}
+
+.sidebar-header {
+    padding: var(--spacing-2xl);
+    border-bottom: 1px solid var(--neutral-gray-300);
+}
+
+.sidebar-nav {
+    padding: var(--spacing-lg) 0;
+}
+
+.sidebar-item {
+    display: block;
+    padding: var(--spacing-md) var(--spacing-2xl);
+    color: var(--neutral-gray-700);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar-item:hover,
+.sidebar-item.active {
+    background: var(--primary-green-50);
+    color: var(--primary-green-800);
+}
+
+/* 관리자 콘텐츠 */
+.admin-content {
+    margin-left: 240px;
+    padding: var(--spacing-2xl);
+}
+
+/* 오버레이 */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 199;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* 섹션 */
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}

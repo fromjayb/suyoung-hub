@@ -1,0 +1,117 @@
+/* 모바일 (360px) */
+@media (max-width: 768px) {
+    /* 사이드바 모바일 */
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .admin-content {
+        margin-left: 0;
+    }
+    
+    /* 메뉴 토글 버튼 표시 */
+    .menu-toggle {
+        display: block;
+        position: fixed;
+        top: var(--spacing-lg);
+        left: var(--spacing-lg);
+        z-index: 201;
+        background: var(--primary-green-800);
+        color: white;
+        border: none;
+        padding: var(--spacing-sm) var(--spacing-md);
+        border-radius: var(--radius-md);
+        font-size: 20px;
+    }
+    
+    /* 헤더 조정 */
+    .header-content {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .header-nav {
+        width: 100%;
+        display: flex;
+        gap: var(--spacing-sm);
+    }
+    
+    .nav-item {
+        flex: 1;
+        text-align: center;
+        padding: var(--spacing-sm);
+        font-size: 13px;
+    }
+    
+    /* 하단바 조정 */
+    .bottom-bar-content {
+        gap: var(--spacing-md);
+    }
+    
+    .total-display {
+        flex: 1;
+        font-size: 18px;
+    }
+    
+    .btn-order {
+        width: 100px;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    /* 카드 그리드 */
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 테이블 스크롤 */
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    /* 모달 */
+    .modal-content {
+        width: 95%;
+        padding: var(--spacing-2xl);
+    }
+    
+    /* 탭 스크롤 */
+    .tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .tab {
+        white-space: nowrap;
+    }
+}
+
+/* 데스크톱 (1440px) */
+@media (min-width: 768px) {
+    .menu-toggle {
+        display: none;
+    }
+    
+    .container {
+        max-width: 1200px;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+/* 터치 타겟 최소 크기 보장 */
+@media (pointer: coarse) {
+    button,
+    .btn,
+    .qty-btn,
+    .tab,
+    .nav-item {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}

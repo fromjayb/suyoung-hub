@@ -1,0 +1,40 @@
+:root {
+    /* 기획서 1.1 컬러 토큰 */
+    --primary-green-800: #0C6B3B;
+    --primary-green-600: #1F7A53;
+    --primary-green-50: #E9F5EE;
+    --neutral-gray-900: #1E1E1E;
+    --neutral-gray-700: #5F6368;
+    --neutral-gray-300: #E5E8EB;
+    --neutral-gray-100: #F5F7F9;
+    --semantic-error: #D32F2F;
+    --semantic-success: #2E7D32;
+    --semantic-info: #247BA0;
+    
+    /* 기획서 1.3 스페이싱 스케일 */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 20px;
+    --spacing-2xl: 24px;
+    --spacing-3xl: 32px;
+    --spacing-4xl: 40px;
+    --spacing-5xl: 48px;
+    
+    /* 그림자 */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+    
+    /* 반경 */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+    
+    /* 브레이크포인트 */
+    --mobile: 360px;
+    --tablet: 768px;
+    --desktop: 1440px;
+}
