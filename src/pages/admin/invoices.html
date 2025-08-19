@@ -1,0 +1,124 @@
+<!-- 기획서 3.8 계산서 요청 현황 -->
+<div id="admin-invoices">
+    <div class="admin-content">
+        <h1 style="margin-bottom: var(--spacing-2xl);">계산서 요청 현황</h1>
+        
+        <!-- 요청 현황 테이블 -->
+        <div class="card">
+            <div style="overflow-x: auto;">
+                <table class="table" id="invoice-requests-table">
+                    <thead>
+                        <tr>
+                            <th>요청일</th>
+                            <th>고객</th>
+                            <th>기간</th>
+                            <th>총액 (스냅샷)</th>
+                            <th>상태</th>
+                            <th>작업</th>
+                        </tr>
+                    </thead>
+                    <tbody id="invoice-requests-tbody">
+                        <!-- JavaScript에서 동적 생성 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 상세 패널 (오른쪽 슬라이드) -->
+    <div id="invoice-detail-panel" class="invoice-detail-panel">
+        <div class="invoice-detail-content">
+            <div class="invoice-detail-header">
+                <h3 id="invoice-detail-title">계산서 상세</h3>
+                <button class="btn btn-ghost" onclick="AdminApp.closeInvoiceDetail()">✕</button>
+            </div>
+            
+            <div class="invoice-detail-body" id="invoice-detail-body">
+                <!-- JavaScript에서 동적 생성 -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- 오버레이 -->
+    <div id="invoice-detail-overlay" class="invoice-detail-overlay" onclick="AdminApp.closeInvoiceDetail()"></div>
+</div>
+
+<!-- 계산서 상세 템플릿 -->
+<template id="invoice-detail-template">
+    <div class="form-group">
+        <label class="form-label">요청 정보</label>
+        <div style="background: var(--neutral-gray-100); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg);">
+                <div>
+                    <div class="caption">요청일</div>
+                    <div style="font-weight: 600;" id="invoice-request-date"></div>
+                </div>
+                <div>
+                    <div class="caption">고객사</div>
+                    <div style="font-weight: 600;" id="invoice-customer-name"></div>
+                </div>
+                <div>
+                    <div class="caption">기간</div>
+                    <div style="font-weight: 600;" id="invoice-period"></div>
+                </div>
+                <div>
+                    <div class="caption">상태</div>
+                    <div id="invoice-status-badge"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="form-label">고객사 정보 (계산서용)</label>
+        <div class="form-group">
+            <label class="form-label">상호</label>
+            <input type="text" class="form-input" id="invoice-company-name">
+        </div>
+        <div class="form-group">
+            <label class="form-label">사업자번호</label>
+            <input type="text" class="form-input" id="invoice-business-number">
+        </div>
+        <div class="form-group">
+            <label class="form-label">이메일</label>
+            <input type="email" class="form-input" id="invoice-email">
+        </div>
+        <div class="form-group">
+            <label class="form-label">연락처</label>
+            <input type="tel" class="form-input" id="invoice-phone">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="form-label">기간 내 결제완료 주문 내역</label>
+        <div style="overflow-x: auto;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>품목명</th>
+                        <th>총 수량</th>
+                        <th>단가</th>
+                        <th>소계</th>
+                    </tr>
+                </thead>
+                <tbody id="invoice-items-summary">
+                    <!-- JavaScript에서 동적 생성 -->
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align: right; margin-top: var(--spacing-lg); font-size: 18px; font-weight: 600; color: var(--primary-green-800);">
+            총 합계: <span id="invoice-total-amount"></span>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div style="display: flex; gap: var(--spacing-md);">
+            <button class="btn btn-primary" onclick="AdminApp.issueInvoice()" id="issue-invoice-btn">
+                계산서 발행
+            </button>
+            <button class="btn btn-secondary" onclick="AdminApp.updateInvoiceInfo()">
+                정보 수정
+            </button>
+        </div>
+    </div>
+</template>

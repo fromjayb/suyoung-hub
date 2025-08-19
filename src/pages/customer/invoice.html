@@ -1,0 +1,65 @@
+<!-- 기획서 2.4 계산서 요청 화면 -->
+<div id="customer-invoice">
+    <div id="invoice-header"></div>
+    
+    <div class="main-content">
+        <div class="container">
+            <h2 style="margin-bottom: var(--spacing-2xl);">계산서 요청</h2>
+            
+            <!-- 기간 선택 탭 (기획서 2.4) -->
+            <div class="tabs">
+                <button class="tab active" onclick="App.setPeriod('monthly')" data-period="monthly">
+                    월별
+                </button>
+                <button class="tab" onclick="App.setPeriod('quarterly')" data-period="quarterly">
+                    분기별
+                </button>
+                <button class="tab" onclick="App.setPeriod('half')" data-period="half">
+                    반기별
+                </button>
+                <button class="tab" onclick="App.setPeriod('yearly')" data-period="yearly" id="yearly-tab">
+                    연간
+                </button>
+            </div>
+            
+            <!-- 선택된 기간 표시 -->
+            <div class="card" style="margin-bottom: var(--spacing-2xl);">
+                <h3 style="margin: 0 0 var(--spacing-md) 0;">선택한 기간</h3>
+                <div id="selected-period" style="font-size: 16px; font-weight: 600; color: var(--primary-green-800);">
+                    <!-- JavaScript에서 동적 생성 -->
+                </div>
+                <div class="caption" style="color: var(--neutral-gray-700); margin-top: var(--spacing-sm);">
+                    결제완료된 주문만 계산서에 포함됩니다.
+                </div>
+            </div>
+            
+            <!-- 고객사 정보 (기획서 2.4 고객사 정보 블록) -->
+            <div class="card" style="margin-bottom: var(--spacing-2xl);">
+                <h3 style="margin: 0 0 var(--spacing-lg) 0;">고객사 정보</h3>
+                <div class="form-group">
+                    <label class="form-label">상호</label>
+                    <input type="text" class="form-input" id="company-name" readonly>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">사업자번호</label>
+                    <input type="text" class="form-input" id="business-number" readonly>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">이메일</label>
+                    <input type="email" class="form-input" id="company-email" readonly>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">연락처</label>
+                    <input type="tel" class="form-input" id="company-phone" readonly>
+                </div>
+            </div>
+            
+            <!-- 요청 버튼 -->
+            <button class="btn btn-primary" 
+                    style="width: 100%;"
+                    onclick="App.requestInvoice()">
+                요청 보내기
+            </button>
+        </div>
+    </div>
+</div>

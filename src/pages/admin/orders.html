@@ -1,0 +1,123 @@
+<!-- 기획서 3.7 전체 주문 조회 -->
+<div id="admin-orders">
+    <div class="admin-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-2xl);">
+            <h1 style="margin: 0;">전체 주문 조회</h1>
+            <button class="btn btn-secondary" onclick="AdminApp.exportOrdersCSV()">
+                <span style="margin-right: var(--spacing-sm);">📊</span>
+                CSV 내보내기
+            </button>
+        </div>
+        
+        <!-- 필터 (기획서 3.7) -->
+        <div class="card" style="margin-bottom: var(--spacing-xl);">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg); align-items: end;">
+                <div>
+                    <label class="form-label">고객사</label>
+                    <select class="form-input" id="orders-customer-filter" onchange="AdminApp.filterAllOrders()">
+                        <option value="">전체 고객</option>
+                        <!-- JavaScript에서 동적 생성 -->
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">시작일</label>
+                    <input type="date" class="form-input" id="orders-start-date" onchange="AdminApp.filterAllOrders()">
+                </div>
+                <div>
+                    <label class="form-label">종료일</label>
+                    <input type="date" class="form-input" id="orders-end-date" onchange="AdminApp.filterAllOrders()">
+                </div>
+                <div>
+                    <label class="form-label">상태</label>
+                    <select class="form-input" id="orders-status-filter" onchange="AdminApp.filterAllOrders()">
+                        <option value="">전체</option>
+                        <option value="paid">결제완료</option>
+                        <option value="unpaid">미결제</option>
+                    </select>
+                </div>
+            </div>
+            <div style="margin-top: var(--spacing-lg); text-align: right;">
+                <button class="btn btn-ghost" onclick="AdminApp.resetOrderFilters()">
+                    필터 초기화
+                </button>
+            </div>
+        </div>
+        
+        <!-- 주문 통계 요약 -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);" id="orders-stats">
+            <!-- JavaScript에서 동적 생성 -->
+        </div>
+        
+        <!-- 주문 목록 테이블 -->
+        <div class="card">
+            <div style="overflow-x: auto;">
+                <table class="table" id="all-orders-table">
+                    <thead>
+                        <tr>
+                            <th>주문일</th>
+                            <th>고객명</th>
+                            <th>주문번호</th>
+                            <th>금액</th>
+                            <th>상태</th>
+                            <th>상세</th>
+                        </tr>
+                    </thead>
+                    <tbody id="all-orders-tbody">
+                        <!-- JavaScript에서 동적 생성 -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- 페이지네이션 -->
+            <div class="pagination" id="all-orders-pagination">
+                <!-- JavaScript에서 동적 생성 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 주문 상세 모달 템플릿 -->
+<template id="order-detail-template">
+    <div style="margin-bottom: var(--spacing-lg);">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg);">
+            <div>
+                <div class="caption">주문번호</div>
+                <div style="font-weight: 600;" id="detail-order-id"></div>
+            </div>
+            <div>
+                <div class="caption">주문일</div>
+                <div style="font-weight: 600;" id="detail-order-date"></div>
+            </div>
+            <div>
+                <div class="caption">고객사</div>
+                <div style="font-weight: 600;" id="detail-customer-name"></div>
+            </div>
+            <div>
+                <div class="caption">상태</div>
+                <div id="detail-order-status"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="border-top: 1px solid var(--neutral-gray-300); padding-top: var(--spacing-lg);">
+        <h4 style="margin: 0 0 var(--spacing-md) 0;">주문 품목</h4>
+        <div style="overflow-x: auto;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>품목명</th>
+                        <th>수량</th>
+                        <th>단가</th>
+                        <th>소계</th>
+                    </tr>
+                </thead>
+                <tbody id="detail-order-items">
+                    <!-- JavaScript에서 동적 생성 -->
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align: right; margin-top: var(--spacing-lg); font-size: 18px; font-weight: 600;">
+            총 금액: <span id="detail-total-amount"></span>
+        </div>
+    </div>
+</template>

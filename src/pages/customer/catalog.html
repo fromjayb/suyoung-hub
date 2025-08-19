@@ -1,0 +1,38 @@
+<!-- 기획서 2.2 카탈로그/주문 화면 -->
+<div id="customer-catalog">
+    <!-- 헤더는 JavaScript에서 동적 생성 -->
+    <div id="catalog-header"></div>
+    
+    <div class="main-content">
+        <div class="container">
+            <!-- 탭 메뉴 -->
+            <div class="tabs">
+                <button class="tab active" onclick="App.switchTab('lily')" data-tab="lily">
+                    백합류
+                </button>
+                <button class="tab" onclick="App.switchTab('other')" data-tab="other">
+                    기타
+                </button>
+            </div>
+            
+            <!-- 제품 리스트 -->
+            <div id="product-list">
+                <!-- JavaScript에서 동적 생성 -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- 하단 고정 바 (기획서 하단 고정 바) -->
+    <div class="bottom-bar">
+        <div class="bottom-bar-content">
+            <div style="font-size: 18px; font-weight: 600;">
+                총 견적금액: <span id="total-amount">₩0</span>
+            </div>
+            <button class="btn btn-primary" 
+                    style="min-width: 120px;"
+                    onclick="App.placeOrder()">
+                주문하기
+            </button>
+        </div>
+    </div>
+</div>

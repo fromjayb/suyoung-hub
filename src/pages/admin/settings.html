@@ -1,0 +1,108 @@
+<!-- 기획서 3.9 설정/지표 -->
+<div id="admin-settings">
+    <div class="admin-content">
+        <h1 style="margin-bottom: var(--spacing-2xl);">설정/지표</h1>
+        
+        <!-- 매출 지표 섹션 -->
+        <div class="card" style="margin-bottom: var(--spacing-2xl);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xl);">
+                <h2 style="margin: 0;">총 매출 현황</h2>
+                <select class="form-input" style="width: auto;" id="settings-revenue-period" onchange="AdminApp.updateSettingsRevenue()">
+                    <option value="all">전체 기간</option>
+                    <option value="year">올해</option>
+                    <option value="quarter">이번 분기</option>
+                    <option value="month">이번달</option>
+                    <option value="week">이번주</option>
+                </select>
+            </div>
+            
+            <!-- 매출 통계 카드 -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-xl);" id="revenue-stats">
+                <!-- JavaScript에서 동적 생성 -->
+            </div>
+        </div>
+        
+        <!-- 관리자 계정 설정 -->
+        <div class="card" style="margin-bottom: var(--spacing-2xl);">
+            <h2 style="margin: 0 0 var(--spacing-xl) 0;">관리자 계정 설정</h2>
+            
+            <form onsubmit="AdminApp.updateAdminAccount(event)">
+                <div class="form-group">
+                    <label class="form-label">현재 이메일</label>
+                    <input type="email" class="form-input" id="current-admin-email" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">새 이메일</label>
+                    <input type="email" class="form-input" id="new-admin-email" placeholder="새 이메일 주소를 입력하세요">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">현재 비밀번호</label>
+                    <input type="password" class="form-input" id="current-password" placeholder="현재 비밀번호를 입력하세요">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">새 비밀번호</label>
+                    <input type="password" class="form-input" id="new-password" placeholder="새 비밀번호를 입력하세요">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">새 비밀번호 확인</label>
+                    <input type="password" class="form-input" id="confirm-password" placeholder="새 비밀번호를 다시 입력하세요">
+                </div>
+                
+                <div style="background: var(--primary-green-50); padding: var(--spacing-lg); border-radius: var(--radius-md); margin-bottom: var(--spacing-lg);">
+                    <div style="font-weight: 600; color: var(--primary-green-800); margin-bottom: var(--spacing-xs);">⚠️ 주의사항</div>
+                    <div class="caption" style="color: var(--neutral-gray-700);">
+                        계정 정보 변경 시 자동으로 로그아웃되며, 새로운 정보로 다시 로그인해야 합니다.
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    계정 정보 변경
+                </button>
+            </form>
+        </div>
+        
+        <!-- 감사 로그 (선택적 기능) -->
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xl);">
+                <h2 style="margin: 0;">시스템 로그</h2>
+                <div style="display: flex; gap: var(--spacing-md);">
+                    <select class="form-input" style="width: auto;" id="log-filter" onchange="AdminApp.filterLogs()">
+                        <option value="all">전체 로그</option>
+                        <option value="payment">결제 상태 변경</option>
+                        <option value="inventory">재고/단가 변경</option>
+                        <option value="user">사용자 관리</option>
+                    </select>
+                    <button class="btn btn-ghost" onclick="AdminApp.exportLogs()">
+                        내보내기
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 로그 테이블 -->
+            <div style="overflow-x: auto;">
+                <table class="table" id="audit-logs-table">
+                    <thead>
+                        <tr>
+                            <th>시간</th>
+                            <th>작업 유형</th>
+                            <th>상세 내용</th>
+                            <th>관련 데이터</th>
+                        </tr>
+                    </thead>
+                    <tbody id="audit-logs-tbody">
+                        <!-- JavaScript에서 동적 생성 -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- 페이지네이션 -->
+            <div class="pagination" id="logs-pagination">
+                <!-- JavaScript에서 동적 생성 -->
+            </div>
+        </div>
+    </div>
+</div>

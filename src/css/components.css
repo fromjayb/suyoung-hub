@@ -51,33 +51,33 @@
 }
 
 .badge-paid {
-    background: #E6F4EA;
-    color: var(--semantic-success);
+    background: var(--badge-paid-bg);
+    color: var(--badge-paid-text);
 }
 
 .badge-unpaid {
-    background: #FDECEA;
-    color: var(--semantic-error);
+    background: var(--badge-unpaid-bg);
+    color: var(--badge-unpaid-text);
 }
 
 .badge-pending {
-    background: #ECEFF1;
-    color: var(--neutral-gray-700);
+    background: var(--badge-pending-bg);
+    color: var(--badge-pending-text);
 }
 
 .badge-out {
-    background: #FFEBEE;
-    color: var(--semantic-error);
+    background: var(--badge-out-bg);
+    color: var(--badge-out-text);
 }
 
 .badge-plenty {
-    background: #C8E6C9;
-    color: var(--primary-green-800);
+    background: var(--badge-plenty-bg);
+    color: var(--badge-plenty-text);
 }
 
 .badge-low {
-    background: var(--neutral-gray-100);
-    color: var(--neutral-gray-700);
+    background: var(--badge-low-bg);
+    color: var(--badge-low-text);
     border: 1px solid var(--neutral-gray-300);
 }
 
@@ -140,6 +140,17 @@
 .tab.active {
     color: var(--primary-green-800);
     border-bottom-color: var(--primary-green-800);
+}
+
+.tab.disabled {
+    color: var(--neutral-gray-300);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.tab.disabled:hover {
+    color: var(--neutral-gray-300);
+    border-bottom-color: transparent;
 }
 
 /* 테이블 */
@@ -306,4 +317,80 @@
     background: var(--primary-green-800);
     color: white;
     border-color: var(--primary-green-800);
+}
+
+/* 관리자 화면용 추가 스타일 */
+.invoice-detail-panel {
+    position: fixed;
+    right: -500px;
+    top: 0;
+    width: 500px;
+    height: 100vh;
+    background: white;
+    box-shadow: var(--shadow-lg);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.invoice-detail-panel.active {
+    right: 0;
+}
+
+.invoice-detail-content {
+    padding: var(--spacing-2xl);
+}
+
+.invoice-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-2xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--neutral-gray-300);
+}
+
+.invoice-detail-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+.invoice-detail-overlay.active {
+    display: block;
+}
+
+/* 고객사 카드 그리드 */
+.customers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.customer-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--neutral-gray-300);
+    transition: all 0.3s;
+}
+
+.customer-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-green-600);
+}
+
+.customer-code {
+    background: var(--primary-green-50);
+    color: var(--primary-green-800);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 12px;
 }

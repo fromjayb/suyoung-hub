@@ -37,4 +37,18 @@
     --mobile: 360px;
     --tablet: 768px;
     --desktop: 1440px;
+    
+    /* 기획서 4.4 배지 색상 규칙 */
+    --badge-paid-bg: #E6F4EA;
+    --badge-paid-text: #2E7D32;
+    --badge-unpaid-bg: #FDECEA;
+    --badge-unpaid-text: #D32F2F;
+    --badge-pending-bg: #ECEFF1;
+    --badge-pending-text: #5F6368;
+    --badge-plenty-bg: #C8E6C9;
+    --badge-plenty-text: #0C6B3B;
+    --badge-low-bg: #F5F7F9;
+    --badge-low-text: #5F6368;
+    --badge-out-bg: #FFEBEE;
+    --badge-out-text: #D32F2F;
 }

@@ -1,0 +1,63 @@
+<!-- 기획서 3.6 파트너사 관리 -->
+<div id="admin-customers">
+    <div class="admin-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-2xl);">
+            <h1 style="margin: 0;">파트너사 관리</h1>
+            <button class="btn btn-primary" onclick="AdminApp.showAddCustomerModal()">
+                <span style="margin-right: var(--spacing-sm);">+</span>
+                파트너 추가
+            </button>
+        </div>
+        
+        <!-- 검색 -->
+        <div class="card" style="margin-bottom: var(--spacing-xl);">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); align-items: end;">
+                <div>
+                    <label class="form-label">상호 검색</label>
+                    <input type="text" class="form-input" id="customer-name-search" placeholder="상호명을 입력하세요" onkeyup="AdminApp.searchCustomers()">
+                </div>
+                <div>
+                    <label class="form-label">파트너코드 검색</label>
+                    <input type="text" class="form-input" id="customer-code-search" placeholder="123456" onkeyup="AdminApp.searchCustomers()">
+                </div>
+            </div>
+        </div>
+        
+        <!-- 파트너사 목록 -->
+        <div id="customers-grid">
+            <!-- JavaScript에서 동적 생성 -->
+        </div>
+    </div>
+</div>
+
+<!-- 파트너사 추가/수정 모달 템플릿 -->
+<template id="customer-modal-template">
+    <div class="form-group">
+        <label class="form-label">상호 *</label>
+        <input type="text" class="form-input" id="modal-customer-name" placeholder="예: 가나다 플라워" required>
+    </div>
+    <div class="form-group">
+        <label class="form-label">파트너코드</label>
+        <input type="text" class="form-input" id="modal-customer-code" placeholder="자동 생성됩니다" readonly>
+        <div class="caption" style="color: var(--neutral-gray-700); margin-top: var(--spacing-xs);">
+            6자리 숫자 형태로 자동 생성됩니다.
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="form-label">사업자번호 *</label>
+        <input type="text" class="form-input" id="modal-customer-business" placeholder="123-45-67890" required>
+    </div>
+    <div class="form-group">
+        <label class="form-label">이메일 *</label>
+        <input type="email" class="form-input" id="modal-customer-email" placeholder="contact@company.co.kr" required>
+    </div>
+    <div class="form-group">
+        <label class="form-label">연락처 *</label>
+        <input type="tel" class="form-input" id="modal-customer-phone" placeholder="010-1234-5678" required>
+    </div>
+    <div style="background: var(--neutral-gray-100); padding: var(--spacing-lg); border-radius: var(--radius-md); margin-top: var(--spacing-lg);">
+        <div class="caption" style="color: var(--neutral-gray-700);">
+            <strong>파트너 전용 URL:</strong> <span id="modal-customer-url">저장 후 생성됩니다</span>
+        </div>
+    </div>
+</template>

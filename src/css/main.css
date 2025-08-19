@@ -121,6 +121,145 @@ h3 {
     box-shadow: var(--shadow-md);
     transition: transform 0.3s ease;
     z-index: 200;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 사이드바 토글 버튼 */
+.sidebar-toggle {
+    display: none;
+}
+
+/* 모바일에서 사이드바 숨김 */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        width: 280px; /* 모바일에서 더 넓게 */
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .admin-content {
+        margin-left: 0;
+        padding: var(--spacing-md);
+        padding-top: 70px; /* 메뉴 버튼 공간 확보 */
+        padding-left: 70px; /* 왼쪽 메뉴 버튼 공간 확보 */
+    }
+    
+    .sidebar-toggle {
+        display: block;
+        position: fixed !important;
+        top: var(--spacing-md) !important;
+        left: var(--spacing-md) !important;
+        z-index: 1001 !important;
+        background: var(--primary-green-800) !important;
+        color: white !important;
+        padding: 0 !important;
+        border-radius: var(--radius-sm) !important;
+        cursor: pointer !important;
+        font-size: 18px;
+        border: none;
+        box-shadow: var(--shadow-md);
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* 세로 3줄 햄버거 스타일 */
+        flex-direction: column;
+        gap: 3px;
+    }
+    
+    .sidebar-toggle:hover {
+        background: var(--primary-green-700) !important;
+        transform: scale(1.05);
+    }
+    
+    .sidebar-toggle span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: white;
+        border-radius: 1px;
+        transition: all 0.3s ease;
+    }
+    
+    .sidebar-toggle span:nth-child(1) {
+        transform-origin: left center;
+    }
+    
+    .sidebar-toggle span:nth-child(2) {
+        opacity: 1;
+    }
+    
+    .sidebar-toggle span:nth-child(3) {
+        transform-origin: left center;
+    }
+    
+    /* 메뉴 활성화 시 X 모양으로 변환 */
+    .sidebar.active + .overlay + .admin-content .sidebar-toggle span:nth-child(1),
+    .sidebar.active ~ .sidebar-toggle span:nth-child(1) {
+        transform: rotate(45deg);
+    }
+    
+    .sidebar.active + .overlay + .admin-content .sidebar-toggle span:nth-child(2),
+    .sidebar.active ~ .sidebar-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .sidebar.active + .overlay + .admin-content .sidebar-toggle span:nth-child(3),
+    .sidebar.active ~ .sidebar-toggle span:nth-child(3) {
+        transform: rotate(-45deg);
+    }
+    
+    /* 모바일에서 카드 간격 조정 */
+    .card {
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    /* 모바일에서 테이블 스크롤 */
+    .table {
+        font-size: 12px;
+    }
+    
+    .table th,
+    .table td {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        white-space: nowrap;
+    }
+    
+    /* 모바일에서 폼 요소 */
+    .form-input {
+        font-size: 16px; /* iOS에서 줌 방지 */
+    }
+    
+    /* 모바일에서 버튼 크기 조정 */
+    .btn {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 14px;
+    }
+    
+    /* 모바일에서 그리드 1열로 */
+    .stats-cards,
+    [style*="grid-template-columns"] {
+        display: block !important;
+    }
+    
+    [style*="grid-template-columns"] > * {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    /* 모바일에서 헤더 간격 조정 */
+    h1 {
+        font-size: 18px;
+        margin-bottom: var(--spacing-md) !important;
+    }
+    
+    h2 {
+        font-size: 16px;
+    }
 }
 
 .sidebar-header {
@@ -146,6 +285,17 @@ h3 {
     color: var(--primary-green-800);
 }
 
+.sidebar-item.logout-item {
+    border-top: 1px solid var(--neutral-gray-300);
+    margin-top: var(--spacing-md);
+    color: var(--semantic-error);
+}
+
+.sidebar-item.logout-item:hover {
+    background: var(--semantic-error-bg);
+    color: var(--semantic-error);
+}
+
 /* 관리자 콘텐츠 */
 .admin-content {
     margin-left: 240px;
@@ -166,6 +316,13 @@ h3 {
 
 .overlay.active {
     display: block;
+}
+
+/* 모바일에서 오버레이 표시 */
+@media (max-width: 768px) {
+    .overlay.active {
+        display: block;
+    }
 }
 
 /* 섹션 */
