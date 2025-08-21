@@ -526,15 +526,16 @@ const App = {
             </div>
             <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
                 ${recentRequests.map(request => `
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-md); background: var(--neutral-gray-50); border-radius: var(--radius-md);">
-                        <div>
-                            <div style="font-weight: 600; margin-bottom: var(--spacing-xs);">${request.period}</div>
-                            <div class="caption" style="color: var(--neutral-gray-700);">
-                                요청일: ${request.requestDate} | 금액: ₩${request.requestAmount.toLocaleString()} | ${request.paidCount}건
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; padding: var(--spacing-sm) var(--spacing-md); background: var(--neutral-gray-50); border-radius: var(--radius-md); gap: var(--spacing-md);">
+                        <div style="flex: 1; min-width: 0;">
+                            <div style="font-weight: 600; margin-bottom: var(--spacing-xs); line-height: 1.3;">${request.period}</div>
+                            <div class="caption" style="color: var(--neutral-gray-700); line-height: 1.4; word-wrap: break-word; overflow-wrap: break-word;">
+                                요청일: ${request.requestDate}<br>
+                                금액: ₩${request.requestAmount.toLocaleString()} | ${request.paidCount}건
                             </div>
                         </div>
-                        <div style="text-align: right;">
-                            <span class="badge badge-${request.status === 'completed' ? 'paid' : 'pending'}">
+                        <div style="flex-shrink: 0;">
+                            <span class="badge badge-${request.status === 'completed' ? 'paid' : 'pending'}" style="white-space: nowrap;">
                                 ${request.status === 'completed' ? '발행완료' : '처리대기'}
                             </span>
                         </div>
@@ -612,22 +613,24 @@ const App = {
         
         // 요청 목록 렌더링
         requestsList.innerHTML = currentPageRequests.map(request => `
-            <div class="card" style="margin-bottom: var(--spacing-lg);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--spacing-md);">
-                    <div>
-                        <div style="font-weight: 600; margin-bottom: var(--spacing-xs);">${request.period}</div>
-                        <div class="caption" style="color: var(--neutral-gray-700);">요청일: ${request.requestDate}</div>
-                        ${request.processedDate ? `<div class="caption" style="color: var(--neutral-gray-700);">처리일: ${request.processedDate}</div>` : ''}
+            <div class="card" style="margin-bottom: var(--spacing-lg); padding: var(--spacing-md);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--spacing-md); gap: var(--spacing-md);">
+                    <div style="flex: 1; min-width: 0;">
+                        <div style="font-weight: 600; margin-bottom: var(--spacing-xs); line-height: 1.3;">${request.period}</div>
+                        <div class="caption" style="color: var(--neutral-gray-700); line-height: 1.4;">
+                            요청일: ${request.requestDate}
+                            ${request.processedDate ? `<br>처리일: ${request.processedDate}` : ''}
+                        </div>
                     </div>
-                    <div style="text-align: right;">
+                    <div style="text-align: right; flex-shrink: 0;">
                         <div style="font-weight: 600; margin-bottom: var(--spacing-xs);">₩${request.requestAmount.toLocaleString()}</div>
-                        <span class="badge badge-${request.status === 'completed' ? 'paid' : 'pending'}">
+                        <span class="badge badge-${request.status === 'completed' ? 'paid' : 'pending'}" style="white-space: nowrap;">
                             ${request.status === 'completed' ? '발행완료' : '처리대기'}
                         </span>
                     </div>
                 </div>
                 <div style="border-top: 1px solid var(--neutral-gray-300); padding-top: var(--spacing-md);">
-                    <div class="caption" style="color: var(--neutral-gray-700);">
+                    <div class="caption" style="color: var(--neutral-gray-700); word-wrap: break-word;">
                         결제완료 주문 ${request.paidCount}건 | ${request.type === 'monthly' ? '월별' : request.type === 'quarterly' ? '분기별' : request.type === 'half' ? '반기별' : '연간'} 계산서
                     </div>
                 </div>
