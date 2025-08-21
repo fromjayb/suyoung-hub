@@ -298,9 +298,6 @@ const App = {
                             <button class="btn btn-ghost" onclick="App.showOrders()">
                                 주문내역
                             </button>
-                            <button class="btn btn-secondary" onclick="App.showInvoiceRequest()">
-                                계산서 요청
-                            </button>
                             <button class="btn btn-ghost" onclick="App.logout()">
                                 나가기
                             </button>
@@ -341,6 +338,11 @@ const App = {
                     </button>
                 </div>
             </div>
+            
+            <!-- 플로팅 계산서 요청 버튼 -->
+            <button class="floating-invoice-btn" onclick="App.showInvoiceRequest()" title="계산서 요청">
+                📋
+            </button>
         `;
         this.renderProducts();
         this.updateTotal();
