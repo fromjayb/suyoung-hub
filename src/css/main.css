@@ -53,6 +53,34 @@ h3 {
     .container {
         padding: 0 var(--spacing-lg);
     }
+    
+    /* 파트너 헤더 모바일 최적화 */
+    .header .container > div {
+        flex-wrap: nowrap !important; /* 강제로 줄바꿈 방지 */
+        overflow-x: auto; /* 필요시 가로 스크롤 */
+    }
+    
+    .header .btn {
+        min-width: auto; /* 최소 너비 제거 */
+        padding: calc(var(--spacing-md) * 0.8) calc(var(--spacing-lg) * 0.8); /* 모바일에서 패딩 줄임 */
+        font-size: 12px; /* 모바일에서 폰트 크기 줄임 */
+    }
+}
+
+/* 일반 모바일 환경에서 파트너 헤더 최적화 */
+@media (max-width: 768px) {
+    .header .container > div {
+        flex-wrap: nowrap; /* 줄바꿈 방지 */
+    }
+    
+    .header .container > div > div:last-child {
+        gap: var(--spacing-xs); /* 모바일에서 버튼 간격 더 줄임 */
+    }
+    
+    .header .btn {
+        padding: calc(var(--spacing-sm) * 0.9) calc(var(--spacing-lg) * 0.9); /* 모바일 패딩 조정 */
+        font-size: 12.5px; /* 모바일 폰트 크기 조정 */
+    }
 }
 
 /* 로그인 화면 */
@@ -103,6 +131,14 @@ h3 {
 /* 파트너 페이지 헤더 버튼 간격만 조정 (10% 감소) */
 .header .container > div > div:last-child {
     gap: calc(var(--spacing-md) * 0.9); /* 기존 간격의 90% */
+    flex-shrink: 0; /* 버튼 영역 축소 방지 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+/* 파트너 페이지 헤더 버튼 텍스트 줄바꿈 방지 */
+.header .btn {
+    white-space: nowrap; /* 버튼 텍스트 줄바꿈 방지 */
+    flex-shrink: 0; /* 개별 버튼 축소 방지 */
 }
 
 /* 메인 콘텐츠 */

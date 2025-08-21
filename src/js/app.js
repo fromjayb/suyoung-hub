@@ -16,6 +16,9 @@ const App = {
             // 로그인 상태 복원
             DataManager.currentUser = sessionState.currentUser;
             
+            // 세션 타임아웃 시작
+            SessionManager.init();
+            
             // 저장된 장바구니 복원
             const savedCart = localStorage.getItem('partnerCart');
             if (savedCart) {
@@ -187,6 +190,7 @@ const App = {
                 
                 console.log('로그인 성공, 파트너 페이지로 이동');
                 this.saveSessionState(); // 세션 상태 저장
+                SessionManager.init(); // 세션 타임아웃 시작
                 this.renderCustomerCatalog();
                 return;
             }
@@ -260,6 +264,7 @@ const App = {
                 type: 'admin',
                 data: { email: 'admin@suyoung.co.kr', name: '관리자' }
             };
+            // 관리자 로그인 시 세션 매니저 초기화는 AdminApp.init()에서 처리
             AdminApp.init();
         } else {
             alert('이메일 또는 비밀번호가 올바르지 않습니다.');
@@ -989,6 +994,11 @@ const App = {
     
     // 로그아웃
     logout() {
+        // 세션 매니저 정지
+        if (typeof SessionManager !== 'undefined') {
+            SessionManager.stop();
+        }
+        
         DataManager.currentUser = null;
         DataManager.cart = {};
         this.clearSessionState(); // 파트너 세션 상태 삭제

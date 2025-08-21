@@ -10,6 +10,9 @@ const AdminApp = {
             // 로그인 상태 복원
             DataManager.currentUser = sessionState.currentUser;
             
+            // 세션 타임아웃 시작
+            SessionManager.init();
+            
             this.renderAdminLayout();
             // 현재 페이지 상태 복원
             const lastPage = sessionState.currentPage || 'dashboard';
@@ -1563,5 +1566,23 @@ const AdminApp = {
     
     initSettings() {
         console.log('설정 페이지 초기화');
+    },
+    
+    // 로그아웃
+    logout() {
+        // 세션 매니저 정지
+        if (typeof SessionManager !== 'undefined') {
+            SessionManager.stop();
+        }
+        
+        DataManager.currentUser = null;
+        this.clearSessionState();
+        
+        // 파트너 로그인 화면으로 이동
+        if (typeof App !== 'undefined' && App.renderLogin) {
+            App.renderLogin();
+        } else {
+            window.location.reload();
+        }
     }
 };
