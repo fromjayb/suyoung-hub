@@ -22,7 +22,7 @@ const Sidebar = {
                     ${menuItems.map(item => `
                         <a href="#" 
                            class="sidebar-item ${item.id === currentPage ? 'active' : ''} ${item.isLogout ? 'logout-item' : ''}" 
-                           onclick="${item.isLogout ? 'App.logout()' : `AdminApp.showPage('${item.id}')`}">
+                           onclick="${item.isLogout ? 'App.logout(); Sidebar.closeSidebar();' : `AdminApp.showPage('${item.id}'); Sidebar.closeSidebar();`}">
                             <span style="margin-right: var(--spacing-md);">${item.icon}</span>
                             ${item.label}
                         </a>
@@ -59,6 +59,25 @@ const Sidebar = {
                 // 사이드바가 닫힐 때 body 스크롤 복원
                 document.body.style.overflow = 'auto';
             }
+        }
+    },
+    
+    closeSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        
+        // 사이드바와 오버레이가 활성화되어 있으면 닫기
+        if (sidebar && sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+        }
+        
+        if (overlay && overlay.classList.contains('active')) {
+            overlay.classList.remove('active');
+        }
+        
+        // body 스크롤 복원 (모바일)
+        if (window.innerWidth <= 768) {
+            document.body.style.overflow = 'auto';
         }
     }
 };
